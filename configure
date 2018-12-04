@@ -1,0 +1,6 @@
+--with-luajit
+--enable-reproducible
+--enable-unit-tests
+--enable-valgrind
+--enable-systemd
+--with-socketdir=/run

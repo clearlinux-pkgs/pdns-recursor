@@ -1,0 +1,20 @@
+Configure miss: PROTOBUF
+Configure miss: protoc
+Configure miss: lua.hpp usability
+Configure miss: lua.hpp presence
+Configure miss: lua.hpp
+Configure miss: whether to enable verbose logging
+Configure miss: whether we will be linking in Botan 2.x
+Configure miss: LIBSODIUM
+Configure miss: whether we will be linking in libdecaf
+Configure miss: net-snmp-config
+Configure miss: net-snmp-config
+Configure miss: whether snmp_select_info2 is declared
+Configure miss: whether C++ compiler handles -Werror -Wunknown-warning-option
+Configure miss: whether to enable AddressSanitizer
+Configure miss: whether to enable MemorySanitizer
+Configure miss: whether to enable ThreadSanitizer
+Configure miss: whether to enable LeakSanitizer
+Configure miss: whether to enable Undefined Behaviour Sanitizer
+Configure miss: whether to enable code malloc-trace
+Configure miss: sd_listen_fds in -lsystemd-daemon
