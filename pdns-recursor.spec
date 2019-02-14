@@ -6,7 +6,7 @@
 #
 Name     : pdns-recursor
 Version  : 4.1.11
-Release  : 7
+Release  : 8
 URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.1.11.tar.bz2
 Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.1.11.tar.bz2
 Source99 : https://downloads.powerdns.com/releases/pdns-recursor-4.1.11.tar.bz2.asc
