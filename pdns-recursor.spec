@@ -6,10 +6,10 @@
 #
 Name     : pdns-recursor
 Version  : 4.1.12
-Release  : 10
+Release  : 11
 URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.1.12.tar.bz2
 Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.1.12.tar.bz2
-Source99 : https://downloads.powerdns.com/releases/pdns-recursor-4.1.12.tar.bz2.asc
+Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.1.12.tar.bz2.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 MIT
@@ -68,17 +68,22 @@ services components for the pdns-recursor package.
 
 %prep
 %setup -q -n pdns-recursor-4.1.12
+cd %{_builddir}/pdns-recursor-4.1.12
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1554228743
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1582863817
+export GCC_IGNORE_WERROR=1
 export CFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wno-error -Wl,-z,max-page-size=0x1000 -march=westmere -mtune=haswell"
 export CXXFLAGS=$CFLAGS
 unset LDFLAGS
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --with-luajit \
 --enable-reproducible \
 --enable-unit-tests \
@@ -88,21 +93,21 @@ export LDFLAGS="${LDFLAGS} -fno-lto"
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1554228743
+export SOURCE_DATE_EPOCH=1582863817
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pdns-recursor
-cp COPYING %{buildroot}/usr/share/package-licenses/pdns-recursor/COPYING
-cp NOTICE %{buildroot}/usr/share/package-licenses/pdns-recursor/NOTICE
-cp ext/json11/LICENSE.txt %{buildroot}/usr/share/package-licenses/pdns-recursor/ext_json11_LICENSE.txt
-cp ext/yahttp/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/ext_yahttp_LICENSE
-cp html/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/html_LICENSE
+cp %{_builddir}/pdns-recursor-4.1.12/COPYING %{buildroot}/usr/share/package-licenses/pdns-recursor/1d8c93712cbc9117a9e55a7ff86cebd066c8bfd8
+cp %{_builddir}/pdns-recursor-4.1.12/NOTICE %{buildroot}/usr/share/package-licenses/pdns-recursor/b0546213f9970e01098f0ec919c828d83790eb9a
+cp %{_builddir}/pdns-recursor-4.1.12/ext/json11/LICENSE.txt %{buildroot}/usr/share/package-licenses/pdns-recursor/d40d61b8fa8ecae46da12bd1fce4162af02cff8c
+cp %{_builddir}/pdns-recursor-4.1.12/ext/yahttp/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/cd4a6679c43eb8c0331ebc91648b27b6fd747252
+cp %{_builddir}/pdns-recursor-4.1.12/html/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/23a1f87d806ce0330b3d85485e399a5f9f553409
 %make_install
 
 %files
@@ -115,11 +120,11 @@ cp html/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/html_LICEN
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/pdns-recursor/COPYING
-/usr/share/package-licenses/pdns-recursor/NOTICE
-/usr/share/package-licenses/pdns-recursor/ext_json11_LICENSE.txt
-/usr/share/package-licenses/pdns-recursor/ext_yahttp_LICENSE
-/usr/share/package-licenses/pdns-recursor/html_LICENSE
+/usr/share/package-licenses/pdns-recursor/1d8c93712cbc9117a9e55a7ff86cebd066c8bfd8
+/usr/share/package-licenses/pdns-recursor/23a1f87d806ce0330b3d85485e399a5f9f553409
+/usr/share/package-licenses/pdns-recursor/b0546213f9970e01098f0ec919c828d83790eb9a
+/usr/share/package-licenses/pdns-recursor/cd4a6679c43eb8c0331ebc91648b27b6fd747252
+/usr/share/package-licenses/pdns-recursor/d40d61b8fa8ecae46da12bd1fce4162af02cff8c
 
 %files man
 %defattr(0644,root,root,0755)
