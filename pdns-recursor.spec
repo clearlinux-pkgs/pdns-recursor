@@ -6,7 +6,7 @@
 #
 Name     : pdns-recursor
 Version  : 4.1.12
-Release  : 12
+Release  : 13
 URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.1.12.tar.bz2
 Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.1.12.tar.bz2
 Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.1.12.tar.bz2.asc
@@ -26,6 +26,8 @@ BuildRequires : ragel
 BuildRequires : systemd-dev
 BuildRequires : valgrind
 BuildRequires : virtualenv
+Patch1: 0001-Replace-boost-s-placeholders-with-the-ones-from-the-.patch
+Patch2: 0002-Fix-build-with-gcc-10.patch
 
 %description
 PowerDNS Recursor
@@ -69,20 +71,24 @@ services components for the pdns-recursor package.
 %prep
 %setup -q -n pdns-recursor-4.1.12
 cd %{_builddir}/pdns-recursor-4.1.12
+%patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582863817
+export SOURCE_DATE_EPOCH=1592506370
 export GCC_IGNORE_WERROR=1
 export CFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wno-error -Wl,-z,max-page-size=0x1000 -march=westmere -mtune=haswell"
 export CXXFLAGS=$CFLAGS
+export FFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wno-error -Wl,-z,max-page-size=0x1000 -march=westmere -mtune=haswell"
+export FCFLAGS=$FFLAGS
 unset LDFLAGS
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --with-luajit \
 --enable-reproducible \
@@ -100,7 +106,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1582863817
+export SOURCE_DATE_EPOCH=1592506370
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pdns-recursor
 cp %{_builddir}/pdns-recursor-4.1.12/COPYING %{buildroot}/usr/share/package-licenses/pdns-recursor/1d8c93712cbc9117a9e55a7ff86cebd066c8bfd8
