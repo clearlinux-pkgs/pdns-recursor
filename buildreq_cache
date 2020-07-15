@@ -1,5 +1,2 @@
-4.1.12
-curl-dev
+4.1.17
 protobuf-dev
-systemd-dev
-valgrind

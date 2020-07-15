@@ -16,7 +16,7 @@ Reference: Commit 7124653664
  2 files changed, 9 insertions(+), 9 deletions(-)
 
 diff --git a/webserver.cc b/webserver.cc
-index f1a95f4..0384aae 100644
+index 5a7054b..9411ad7 100644
 --- a/webserver.cc
 +++ b/webserver.cc
 @@ -106,7 +106,7 @@ static void bareHandlerWrapper(WebServer::HandlerFunction handler, YaHTTP::Reque
@@ -47,7 +47,7 @@ index f1a95f4..0384aae 100644
  }
  
 diff --git a/ws-recursor.cc b/ws-recursor.cc
-index 0f71ee4..33c1321 100644
+index 2393d75..f3c6988 100644
 --- a/ws-recursor.cc
 +++ b/ws-recursor.cc
 @@ -375,9 +375,9 @@ static void apiServerCacheFlush(HttpRequest* req, HttpResponse* resp) {
@@ -63,7 +63,7 @@ index 0f71ee4..33c1321 100644
    resp->setBody(Json::object {
      { "count", count },
      { "result", "Flushed cache." }
-@@ -453,7 +453,7 @@ RecursorWebServer::RecursorWebServer(FDMultiplexer* fdm)
+@@ -458,7 +458,7 @@ RecursorWebServer::RecursorWebServer(FDMultiplexer* fdm)
    d_ws->bind();
  
    // legacy dispatch
@@ -72,7 +72,7 @@ index 0f71ee4..33c1321 100644
    d_ws->registerApiHandler("/api/v1/servers/localhost/cache/flush", &apiServerCacheFlush);
    d_ws->registerApiHandler("/api/v1/servers/localhost/config/allow-from", &apiServerConfigAllowFrom);
    d_ws->registerApiHandler("/api/v1/servers/localhost/config", &apiServerConfig);
-@@ -599,7 +599,7 @@ void AsyncServerNewConnectionMT(void *p) {
+@@ -604,7 +604,7 @@ void AsyncServerNewConnectionMT(void *p) {
  void AsyncServer::asyncWaitForConnections(FDMultiplexer* fdm, const newconnectioncb_t& callback)
  {
    d_asyncNewConnectionCallback = callback;
@@ -81,7 +81,7 @@ index 0f71ee4..33c1321 100644
  }
  
  void AsyncServer::newConnection()
-@@ -659,5 +659,5 @@ void AsyncWebServer::go() {
+@@ -668,5 +668,5 @@ void AsyncWebServer::go() {
    auto server = std::dynamic_pointer_cast<AsyncServer>(d_server);
    if (!server)
      return;

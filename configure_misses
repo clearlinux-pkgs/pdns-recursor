@@ -3,7 +3,7 @@ Configure miss: lua.hpp presence
 Configure miss: lua.hpp
 Configure miss: whether to enable verbose logging
 Configure miss: whether we will be linking in Botan 2.x
-Configure miss: LIBSODIUM
+Configure miss: libsodium
 Configure miss: whether we will be linking in libdecaf
 Configure miss: net-snmp-config
 Configure miss: net-snmp-config
