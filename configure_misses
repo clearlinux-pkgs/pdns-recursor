@@ -1,13 +1,15 @@
-Configure miss: lua.hpp usability
-Configure miss: lua.hpp presence
-Configure miss: lua.hpp
+Configure miss: g++ option to enable C++11 features
+Configure miss: whether -latomic is needed for __atomic builtins
+Configure miss: pthread_np.h
 Configure miss: whether to enable verbose logging
-Configure miss: whether we will be linking in Botan 2.x
+Configure miss: g++ options needed to detect all undeclared functions
 Configure miss: libsodium
 Configure miss: whether we will be linking in libdecaf
 Configure miss: net-snmp-config
 Configure miss: net-snmp-config
 Configure miss: whether snmp_select_info2 is declared
+Configure miss: arc4random
+Configure miss: libfstrm
 Configure miss: whether C++ compiler handles -Werror -Wunknown-warning-option
 Configure miss: whether to enable AddressSanitizer
 Configure miss: whether to enable MemorySanitizer
