@@ -1,20 +1,20 @@
-Configure miss: g++ option to enable C++11 features
-Configure miss: whether -latomic is needed for __atomic builtins
-Configure miss: pthread_np.h
-Configure miss: whether to enable verbose logging
-Configure miss: g++ options needed to detect all undeclared functions
-Configure miss: libsodium
-Configure miss: whether we will be linking in libdecaf
-Configure miss: net-snmp-config
-Configure miss: net-snmp-config
-Configure miss: whether snmp_select_info2 is declared
 Configure miss: arc4random
+Configure miss: g++ option to enable C++11 features
+Configure miss: g++ options needed to detect all undeclared functions
 Configure miss: libfstrm
+Configure miss: libsodium
+Configure miss: net-snmp-config
+Configure miss: net-snmp-config
+Configure miss: pthread_np.h
+Configure miss: sd_listen_fds in -lsystemd-daemon
+Configure miss: whether -latomic is needed for __atomic builtins
 Configure miss: whether C++ compiler handles -Werror -Wunknown-warning-option
+Configure miss: whether snmp_select_info2 is declared
 Configure miss: whether to enable AddressSanitizer
+Configure miss: whether to enable LeakSanitizer
 Configure miss: whether to enable MemorySanitizer
 Configure miss: whether to enable ThreadSanitizer
-Configure miss: whether to enable LeakSanitizer
 Configure miss: whether to enable Undefined Behaviour Sanitizer
 Configure miss: whether to enable code malloc-trace
-Configure miss: sd_listen_fds in -lsystemd-daemon
+Configure miss: whether to enable verbose logging
+Configure miss: whether we will be linking in libdecaf
