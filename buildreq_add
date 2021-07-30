@@ -1,10 +1,10 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-boost-dev
 LuaJIT-dev
-openssl-dev
+boost-dev
 curl-dev
-virtualenv
+openssl-dev
+ragel
 systemd-dev
 valgrind
-ragel
+virtualenv
