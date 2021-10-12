@@ -6,6 +6,5 @@ libcrypto.so.1.1
 libgcc_s.so.1
 libluajit-5.1.so.2
 libm.so.6
-libpthread.so.0
 libstdc++.so.6
 libsystemd.so.0
