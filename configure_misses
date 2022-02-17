@@ -14,6 +14,7 @@ Configure miss: whether -latomic is needed for __atomic builtins
 Configure miss: whether C++ compiler handles -Werror -Wunknown-warning-option
 Configure miss: whether snmp_select_info2 is declared
 Configure miss: whether to enable AddressSanitizer
+Configure miss: whether to enable DNS over TLS support
 Configure miss: whether to enable LeakSanitizer
 Configure miss: whether to enable MemorySanitizer
 Configure miss: whether to enable ThreadSanitizer
