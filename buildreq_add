@@ -7,4 +7,4 @@ openssl-dev
 ragel
 systemd-dev
 valgrind
-virtualenv
+pypi-virtualenv
