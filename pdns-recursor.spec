@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x6FFC33439B0D04DF (erik.winkels@open-xchange.com)
 #
 Name     : pdns-recursor
-Version  : 4.7.1
-Release  : 27
-URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.7.1.tar.bz2
-Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.7.1.tar.bz2
-Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.7.1.tar.bz2.asc
+Version  : 4.7.2
+Release  : 28
+URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.7.2.tar.bz2
+Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.7.2.tar.bz2
+Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.7.2.tar.bz2.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 MIT
@@ -67,15 +67,15 @@ services components for the pdns-recursor package.
 
 
 %prep
-%setup -q -n pdns-recursor-4.7.1
-cd %{_builddir}/pdns-recursor-4.7.1
+%setup -q -n pdns-recursor-4.7.2
+cd %{_builddir}/pdns-recursor-4.7.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1657862596
+export SOURCE_DATE_EPOCH=1661290419
 export GCC_IGNORE_WERROR=1
 export CFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wno-error -Wl,-z,max-page-size=0x1000 -march=westmere -mtune=haswell"
 export CXXFLAGS=$CFLAGS
@@ -102,14 +102,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1657862596
+export SOURCE_DATE_EPOCH=1661290419
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pdns-recursor
-cp %{_builddir}/pdns-recursor-4.7.1/COPYING %{buildroot}/usr/share/package-licenses/pdns-recursor/1d8c93712cbc9117a9e55a7ff86cebd066c8bfd8
-cp %{_builddir}/pdns-recursor-4.7.1/NOTICE %{buildroot}/usr/share/package-licenses/pdns-recursor/b0546213f9970e01098f0ec919c828d83790eb9a
-cp %{_builddir}/pdns-recursor-4.7.1/ext/json11/LICENSE.txt %{buildroot}/usr/share/package-licenses/pdns-recursor/d40d61b8fa8ecae46da12bd1fce4162af02cff8c
-cp %{_builddir}/pdns-recursor-4.7.1/ext/yahttp/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/cd4a6679c43eb8c0331ebc91648b27b6fd747252
-cp %{_builddir}/pdns-recursor-4.7.1/html/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/23a1f87d806ce0330b3d85485e399a5f9f553409
+cp %{_builddir}/pdns-recursor-%{version}/COPYING %{buildroot}/usr/share/package-licenses/pdns-recursor/1d8c93712cbc9117a9e55a7ff86cebd066c8bfd8
+cp %{_builddir}/pdns-recursor-%{version}/NOTICE %{buildroot}/usr/share/package-licenses/pdns-recursor/b0546213f9970e01098f0ec919c828d83790eb9a
+cp %{_builddir}/pdns-recursor-%{version}/ext/json11/LICENSE.txt %{buildroot}/usr/share/package-licenses/pdns-recursor/d40d61b8fa8ecae46da12bd1fce4162af02cff8c
+cp %{_builddir}/pdns-recursor-%{version}/ext/yahttp/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/cd4a6679c43eb8c0331ebc91648b27b6fd747252
+cp %{_builddir}/pdns-recursor-%{version}/html/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/23a1f87d806ce0330b3d85485e399a5f9f553409
 %make_install
 
 %files
