@@ -6,7 +6,6 @@ Configure miss: library containing pthread_get_stackaddr_np
 Configure miss: library containing pthread_get_stacksize_np
 Configure miss: libsodium
 Configure miss: net-snmp-config
-Configure miss: net-snmp-config
 Configure miss: pthread_np.h
 Configure miss: sd_listen_fds in -lsystemd-daemon
 Configure miss: whether -latomic is needed for __atomic builtins
