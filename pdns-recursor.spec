@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x6FFC33439B0D04DF (erik.winkels@open-xchange.com)
 #
 Name     : pdns-recursor
-Version  : 4.8.4
-Release  : 33
-URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.8.4.tar.bz2
-Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.8.4.tar.bz2
-Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.8.4.tar.bz2.asc
+Version  : 4.9.0
+Release  : 34
+URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.9.0.tar.bz2
+Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.9.0.tar.bz2
+Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.9.0.tar.bz2.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 MIT
@@ -33,8 +33,8 @@ BuildRequires : valgrind
 
 %description
 PowerDNS Recursor
------------------
-For full details, please read https://doc.powerdns.com/md/recursor/
+=================
+For full details on building PowerDNS Recursor, please read https://docs.powerdns.com/recursor/appendices/compiling.html
 
 %package bin
 Summary: bin components for the pdns-recursor package.
@@ -65,31 +65,35 @@ man components for the pdns-recursor package.
 %package services
 Summary: services components for the pdns-recursor package.
 Group: Systemd services
+Requires: systemd
 
 %description services
 services components for the pdns-recursor package.
 
 
 %prep
-%setup -q -n pdns-recursor-4.8.4
-cd %{_builddir}/pdns-recursor-4.8.4
+%setup -q -n pdns-recursor-4.9.0
+cd %{_builddir}/pdns-recursor-4.9.0
+pushd ..
+cp -a pdns-recursor-4.9.0 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680209134
+export SOURCE_DATE_EPOCH=1688137411
 export GCC_IGNORE_WERROR=1
-export CFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wno-error -Wl,-z,max-page-size=0x4000 -march=westmere"
+export CFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wno-error -Wl,-z,max-page-size=0x4000 -fPIC -march=westmere"
 export CXXFLAGS=$CFLAGS
 export FFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wno-error -Wl,-z,max-page-size=0x4000 -march=westmere"
 export FCFLAGS=$FFLAGS
 unset LDFLAGS
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %reconfigure --disable-static --with-luajit \
 --enable-reproducible \
 --enable-unit-tests \
@@ -97,6 +101,21 @@ export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -f
 --enable-systemd \
 --with-socketdir=/run
 make  %{?_smp_mflags}
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%reconfigure --disable-static --with-luajit \
+--enable-reproducible \
+--enable-unit-tests \
+--enable-valgrind \
+--enable-systemd \
+--with-socketdir=/run
+make  %{?_smp_mflags}
+popd
 
 %check
 export LANG=C.UTF-8
@@ -104,9 +123,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
+cd ../buildavx2;
+make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1680209134
+export SOURCE_DATE_EPOCH=1688137411
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pdns-recursor
 cp %{_builddir}/pdns-recursor-%{version}/COPYING %{buildroot}/usr/share/package-licenses/pdns-recursor/1d8c93712cbc9117a9e55a7ff86cebd066c8bfd8 || :
@@ -114,13 +135,19 @@ cp %{_builddir}/pdns-recursor-%{version}/NOTICE %{buildroot}/usr/share/package-l
 cp %{_builddir}/pdns-recursor-%{version}/ext/json11/LICENSE.txt %{buildroot}/usr/share/package-licenses/pdns-recursor/d40d61b8fa8ecae46da12bd1fce4162af02cff8c || :
 cp %{_builddir}/pdns-recursor-%{version}/ext/yahttp/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/cd4a6679c43eb8c0331ebc91648b27b6fd747252 || :
 cp %{_builddir}/pdns-recursor-%{version}/html/LICENSE %{buildroot}/usr/share/package-licenses/pdns-recursor/23a1f87d806ce0330b3d85485e399a5f9f553409 || :
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/pdns_recursor
+/V3/usr/bin/rec_control
 /usr/bin/pdns_recursor
 /usr/bin/rec_control
 
