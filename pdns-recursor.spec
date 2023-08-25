@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x6FFC33439B0D04DF (erik.winkels@open-xchange.com)
 #
 Name     : pdns-recursor
-Version  : 4.9.0
-Release  : 34
-URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.9.0.tar.bz2
-Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.9.0.tar.bz2
-Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.9.0.tar.bz2.asc
+Version  : 4.9.1
+Release  : 35
+URL      : https://downloads.powerdns.com/releases/pdns-recursor-4.9.1.tar.bz2
+Source0  : https://downloads.powerdns.com/releases/pdns-recursor-4.9.1.tar.bz2
+Source1  : https://downloads.powerdns.com/releases/pdns-recursor-4.9.1.tar.bz2.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 MIT
@@ -72,10 +72,10 @@ services components for the pdns-recursor package.
 
 
 %prep
-%setup -q -n pdns-recursor-4.9.0
-cd %{_builddir}/pdns-recursor-4.9.0
+%setup -q -n pdns-recursor-4.9.1
+cd %{_builddir}/pdns-recursor-4.9.1
 pushd ..
-cp -a pdns-recursor-4.9.0 buildavx2
+cp -a pdns-recursor-4.9.1 buildavx2
 popd
 
 %build
@@ -83,7 +83,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688137411
+export SOURCE_DATE_EPOCH=1692977956
 export GCC_IGNORE_WERROR=1
 export CFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wno-error -Wl,-z,max-page-size=0x4000 -fPIC -march=westmere"
 export CXXFLAGS=$CFLAGS
@@ -127,7 +127,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1688137411
+export SOURCE_DATE_EPOCH=1692977956
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pdns-recursor
 cp %{_builddir}/pdns-recursor-%{version}/COPYING %{buildroot}/usr/share/package-licenses/pdns-recursor/1d8c93712cbc9117a9e55a7ff86cebd066c8bfd8 || :
