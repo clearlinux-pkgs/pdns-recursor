@@ -1,9 +1,15 @@
+Configure miss: /include/openssl/ecdsa.h
+Configure miss: /include/openssl/ecdsa.h
+Configure miss: explicit_memset
+Configure miss: explicit_memset
 Configure miss: g++ -std=c++17 options needed to detect all undeclared functions
 Configure miss: g++ -std=c++17 options needed to detect all undeclared functions
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
 Configure miss: if g++ -std=c++17 static flag -static works
 Configure miss: if g++ -std=c++17 static flag -static works
+Configure miss: if we need to link in Net SNMP
+Configure miss: if we need to link in Net SNMP
 Configure miss: libfstrm
 Configure miss: libfstrm
 Configure miss: library containing pthread_get_stackaddr_np
@@ -12,8 +18,8 @@ Configure miss: library containing pthread_get_stacksize_np
 Configure miss: library containing pthread_get_stacksize_np
 Configure miss: libsodium
 Configure miss: libsodium
-Configure miss: net-snmp-config
-Configure miss: net-snmp-config
+Configure miss: memset_s
+Configure miss: memset_s
 Configure miss: pthread_np.h
 Configure miss: pthread_np.h
 Configure miss: sd_listen_fds in -lsystemd-daemon
@@ -22,10 +28,12 @@ Configure miss: whether -latomic is needed for __atomic builtins
 Configure miss: whether -latomic is needed for __atomic builtins
 Configure miss: whether C++ compiler handles -Werror -Wunknown-warning-option
 Configure miss: whether C++ compiler handles -Werror -Wunknown-warning-option
+Configure miss: whether NID_ED25519 is declared
+Configure miss: whether NID_ED25519 is declared
+Configure miss: whether NID_ED448 is declared
+Configure miss: whether NID_ED448 is declared
 Configure miss: whether link-time optimization is supported
 Configure miss: whether link-time optimization is supported
-Configure miss: whether snmp_select_info2 is declared
-Configure miss: whether snmp_select_info2 is declared
 Configure miss: whether to enable AddressSanitizer
 Configure miss: whether to enable AddressSanitizer
 Configure miss: whether to enable DNS over TLS support
@@ -38,6 +46,8 @@ Configure miss: whether to enable ThreadSanitizer
 Configure miss: whether to enable ThreadSanitizer
 Configure miss: whether to enable Undefined Behaviour Sanitizer
 Configure miss: whether to enable Undefined Behaviour Sanitizer
+Configure miss: whether to enable code coverage
+Configure miss: whether to enable code coverage
 Configure miss: whether to enable code malloc-trace
 Configure miss: whether to enable code malloc-trace
 Configure miss: whether to enable initialization of automatic variables

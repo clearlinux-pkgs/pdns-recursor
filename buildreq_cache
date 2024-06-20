@@ -1,3 +1,4 @@
-4.9.2
+5.0.6
+file
 libcap-dev
-perl(Getopt::Long)
+rustc
