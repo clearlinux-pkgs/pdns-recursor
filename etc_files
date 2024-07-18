@@ -1,4 +1,2 @@
 /etc/:
-recursor.conf-dist
 recursor.yml-dist
-recursor.yml-dist' ']'

@@ -16,6 +16,8 @@ Configure miss: library containing pthread_get_stackaddr_np
 Configure miss: library containing pthread_get_stackaddr_np
 Configure miss: library containing pthread_get_stacksize_np
 Configure miss: library containing pthread_get_stacksize_np
+Configure miss: library containing res_9_query
+Configure miss: library containing res_9_query
 Configure miss: libsodium
 Configure miss: libsodium
 Configure miss: memset_s
