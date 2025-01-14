@@ -50,7 +50,5 @@ Configure miss: whether to enable initialization of automatic variables
 Configure miss: whether to enable initialization of automatic variables
 Configure miss: whether to enable verbose logging
 Configure miss: whether to enable verbose logging
-Configure miss: whether we will be linking in libdecaf
-Configure miss: whether we will be linking in libdecaf
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
